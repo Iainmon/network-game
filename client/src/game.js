@@ -1,5 +1,6 @@
 import {Engine, Render, World, Events, Bodies, Body, Vector} from 'matter-js'
 import * as THREE from 'three'
+import Communicator from './communicator'
 
 Body.getUpVector = function (body) {
     return {
@@ -18,16 +19,11 @@ Body.getRightVector = function (body) {
 
 export default class Game {
 
-    constructor(){
+    constructor(serialized){
         //looks for key presses and logs them
         this.keys = {};
 
-        document.body.addEventListener('keydown', (event) => {
-            this.keys[event.keyCode] = true;
-        });
-        document.body.addEventListener('keyup', (event) => {
-            this.keys[event.keyCode] = false;
-        });
+
 
         //sets up matter js
         this.engine = Engine.create();
