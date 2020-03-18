@@ -2,9 +2,9 @@ const WebSocket = require('ws')
 const Thread = require('async-threading')
 const config = require('./config.json')
 const PlayerController = require('./src/PlayerController')
-const World = require('./src/World')
+const Game = require('./src/World')
 
-const world = new World()
+const gameInstance = new Game();
 
 const options = {
     port: config['socket-port']
@@ -42,16 +42,19 @@ wss.on('connection', function (socket) {
 
 const minimumUpdateFrequency = 60
 
-const clientUpdater = new Thread( () => {
+const serverTick = new Thread( () => {
 
-    world.update()
+    gameInstance.update()
 
+    /*
     const data = world.states()
+    data.gameStates = game.state()
     const encodedData = JSON.stringify(data)
 
     for (const client of clients) {
         client.socket.send(encodedData)
     }
+    */
 
 }, 1000 / minimumUpdateFrequency, false)
 
