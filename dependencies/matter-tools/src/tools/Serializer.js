@@ -61,6 +61,8 @@ Serializer.loadState = function(serializer, engine, key) {
   }
 };
 
+const precision = 20; // 3
+
 /**
  * Serialises the object using the given serializer and a Matter-specific replacer
  * @function Serializer.serialise
@@ -75,7 +77,7 @@ Serializer.serialise = function(serializer, object, indent) {
   return serializer.stringify(object, function(key, value) {
     // limit precision of floats
     if (!/^#/.exec(key) && typeof value === 'number') {
-      var fixed = parseFloat(value.toFixed(3));
+      var fixed = parseFloat(value.toFixed(precision));
 
       // do not limit if limiting will cause value to zero
       // TODO: this should ideally dynamically find the SF precision required
