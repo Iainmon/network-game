@@ -100,13 +100,15 @@ export default class Game {
         World.add(this.engine.world, [this.box, this.ground]);
     }
 
-    public loadFromPacket(packet: any) {
-        this.engine.world = packet as World;
+    public load(data: string) {
+        const s = Serializer.create(); //todo: make this field
+        this.engine.world = s.parse(data) as World;
     }
 
     public serialize(): string {
-        // return this.engine.world.bodies;
-        return Serializer.serialise(Serializer.create(), )
+        const s = Serializer.create(); //todo: make this field
+        const data = Serializer.serialise(s, this.engine.world, 0);
+        return data;
     }
 
     public onNewConnection(): Player {
