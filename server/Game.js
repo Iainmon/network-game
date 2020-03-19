@@ -76,7 +76,7 @@ module.exports = class Game {
     }
 
     compressToPacket(){
-        return null;
+        return this.engine.world.bodies
     }
 
     onNewConnection(){
