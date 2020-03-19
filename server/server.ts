@@ -55,8 +55,7 @@ const serverTick = new Thread( () => {
     
     const data = gameInstance.serialize()
 
-    //console.log(data)
-    //const encodedData = JSON.stringify(data, (key, value) => (key === 'parent' || key === 'plugin' || key === 'parts' || key === 'body') ? 'pseudonull' : value)
+    // console.log(data)
 
     for (const client of clients) {
         client.socket.send(data)

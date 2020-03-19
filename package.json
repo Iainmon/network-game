@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start:server": "ts-node --project server/tsconfig.json server/server.ts",
-    "test:server": "ts-node --project server/tsconfig.json server/test.ts",
+    "test:server": "ts-node --project server/tsconfig.json server/serialize-test.ts",
     "start:client": "webpack-dev-server --watch --open"
   },
   "dependencies": {

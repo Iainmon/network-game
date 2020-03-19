@@ -47,7 +47,7 @@ export class Player {
 
         this.body = Bodies.trapezoid(spawnPos.x, spawnPos.y, 40, 40, 1);
         World.add(world, this.body);
-        Events.on(world, 'beforeUpdate', this.update);
+        //Events.on(world, 'tick', this.update.bind(this));
     }
 
     public update() {
@@ -91,6 +91,8 @@ export default class Game {
     private box: Body;
     private ground: Body;
 
+    private players: Player[] = new Array<Player>();
+
     constructor() {
         // Game States
         this.engine = Engine.create();
@@ -113,15 +115,25 @@ export default class Game {
 
     public onNewConnection(): Player {
         const newPlayer = new Player({ x: 200, y: 200 }, this.engine.world);
+        this.players.push(newPlayer);
         return newPlayer;
     }
 
     public onEndConnection(player: Player) {
+        const index = this.players.indexOf(player);
+        if (index > -1) this.players.splice(index, 1);
+
         World.remove(this.engine.world, player.body);
     }
 
     public update() {
         // console.log(this.engine.world.bodies);
+        // Events.trigger(this.engine, 'tick');
+
+        for (const player of this.players) {
+            player.update();
+        }
+        
         Engine.update(this.engine);
     }
 }

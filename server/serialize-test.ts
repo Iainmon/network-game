@@ -7,10 +7,11 @@ const box = Bodies.rectangle(450, 50, 80, 80);
 const ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
 World.add(engine.world, [box, ground]);
 
-const s = Serializer.create();
-const data = Serializer.serialise(s, engine.world, 0);
+const s1 = Serializer.create();
+const s2 = Serializer.create();
+const data = Serializer.serialise(s1, engine.world, 0);
 
-const parsedWorld = s.parse(data);
+const parsedWorld = s2.parse(data);
 engine.world = parsedWorld;
 
 Engine.update(engine);
