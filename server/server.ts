@@ -2,7 +2,6 @@ import WebSocket from 'ws'
 import Thread from 'async-threading'
 import Game from '../lib/Game'
 
-
 const config = {
     'socket-port': 3000
 }
@@ -54,13 +53,13 @@ const serverTick = new Thread( () => {
     gameInstance.update()
 
     
-    const data = gameInstance.compressToPacket()
+    const data = gameInstance.serialize()
 
     //console.log(data)
-    const encodedData = JSON.stringify(data, (key, value) => (key === 'parent' || key === 'plugin' || key === 'parts' || key === 'body') ? 'pseudonull' : value)
+    //const encodedData = JSON.stringify(data, (key, value) => (key === 'parent' || key === 'plugin' || key === 'parts' || key === 'body') ? 'pseudonull' : value)
 
     for (const client of clients) {
-        client.socket.send(encodedData)
+        client.socket.send(data)
     }
     
 

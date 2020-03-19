@@ -1,4 +1,5 @@
-import { Engine, Render, World, Events, Bodies, Body, Vector } from 'matter-js'
+import { Engine, Render, World, Events, Bodies, Body, Vector } from 'matter-js';
+import { Serializer } from '../dependencies/matter-tools';
 
 // Body.getUpVector = function (body) {
 //     return {
@@ -103,8 +104,9 @@ export default class Game {
         this.engine.world = packet as World;
     }
 
-    public compressToPacket(): Body[] {
-        return this.engine.world.bodies
+    public serialize(): string {
+        // return this.engine.world.bodies;
+        return Serializer.serialise(Serializer.create(), )
     }
 
     public onNewConnection(): Player {
