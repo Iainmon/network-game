@@ -17,8 +17,7 @@ const port = 3000
 const communicator = new Communicator(endpoint, port)
 communicator.onRecieve( (message) => {
     // console.log(message.data)
-    const packet = JSON.parse(message.data)
-    gameInstance.loadFromPacket(packet)
+    gameInstance.load(message.data)
 })
 
 document.body.addEventListener('keydown', (event) => {
