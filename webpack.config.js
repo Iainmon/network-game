@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './client/src/main.ts',
   watchOptions: {
     ignored: /node_modules/
   },
@@ -13,5 +13,17 @@ module.exports = {
     contentBase: path.join(__dirname, 'client/dist'),
     compress: true,
     port: 9000
+  },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
   },
 };

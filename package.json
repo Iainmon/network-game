@@ -4,10 +4,12 @@
   "main": "main.js",
   "license": "MIT",
   "scripts": {
-    "start:server": "node server/server.js",
+    "start:server": "ts-node --project server/tsconfig.json server/server.ts",
     "start:client": "webpack-dev-server --watch --open"
   },
   "dependencies": {
+    "@types/matter-js": "^0.14.2",
+    "@types/ws": "^7.2.3",
     "async-threading": "^1.0.2",
     "matter-js": "^0.14.2",
     "three": "^0.114.0",

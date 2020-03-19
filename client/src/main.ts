@@ -1,7 +1,6 @@
 import { Engine, Render, World, Events, Bodies, Body, Vector } from 'matter-js'
-import * as THREE from 'three'
 import Communicator from './communicator'
-import Game from './Game.client.js'
+import Game from '../../lib/Game'
 
 
 const gameInstance = new Game()

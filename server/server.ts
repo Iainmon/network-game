@@ -1,7 +1,11 @@
-const WebSocket = require('ws')
-const Thread = require('async-threading')
-const config = require('./config.json')
-const Game = require('./Game')
+import WebSocket from 'ws'
+import Thread from 'async-threading'
+import Game from '../lib/Game'
+
+
+const config = {
+    'socket-port': 3000
+}
 
 const gameInstance = new Game();
 
@@ -23,7 +27,7 @@ wss.on('connection', function (socket) {
     clients.push(client)
 
     // Register's the player's controll update callback.
-    socket.on('message', (message) => client.player.setKeys(JSON.parse(message)) )
+    socket.on('message', (message: string) => client.player.setKeys(JSON.parse(message)) )
 
     socket.on('close', () => {
         
