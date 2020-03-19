@@ -1,7 +1,6 @@
 const WebSocket = require('ws')
 const Thread = require('async-threading')
 const config = require('./config.json')
-const PlayerController = require('./src/PlayerController')
 const Game = require('./Game')
 
 const gameInstance = new Game();

@@ -4,9 +4,6 @@ import Communicator from './communicator'
 import Game from './Game.client.js'
 
 
-
-
-
 const gameInstance = new Game()
 const render = Render.create({
     element: document.body,
