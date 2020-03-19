@@ -51,6 +51,7 @@ class Player {
 
     setKeys(newKeys){
         this.keys = newKeys;
+        console.log(this.keys)
     }
 
     onMessage(data){
@@ -60,13 +61,14 @@ class Player {
 
 
 module.exports = class Game {
+
     constructor() {
         // Game States
         this.engine = Engine.create();
 
         this.box = Bodies.rectangle(450, 50, 80, 80);
         this.ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
-        World.add(this.engine.world, [this.player, this.box, this.ground]);
+        World.add(this.engine.world, [this.box, this.ground]);
     }
 
     loadFromPacket(packet){
@@ -78,7 +80,7 @@ module.exports = class Game {
     }
 
     onNewConnection(){
-        const newPlayer = new Player(200, 200, this.engine.world);
+        const newPlayer = new Player({x: 200, y: 200}, this.engine.world);
         return newPlayer;
     }
 
@@ -87,7 +89,7 @@ module.exports = class Game {
     }
 
     update() {
-        console.log(this.engine.world.bodies);
+        // console.log(this.engine.world.bodies);
         Engine.update(this.engine);
     }
 }

@@ -1,5 +1,3 @@
-import WebSocket from 'ws'
-
 export default class Communicator {
     constructor(destination, port) {
         this.ws = new WebSocket(`ws://${destination}:${port}`)
@@ -10,6 +8,6 @@ export default class Communicator {
     }
 
     onRecieve(lambda) {
-        this.ws.on('message', lambda)
+        this.ws.onmessage = lambda
     }
 }
