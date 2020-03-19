@@ -2,7 +2,7 @@ const WebSocket = require('ws')
 const Thread = require('async-threading')
 const config = require('./config.json')
 const PlayerController = require('./src/PlayerController')
-const Game = require('./src/World')
+const Game = require('./Game')
 
 const gameInstance = new Game();
 
@@ -16,16 +16,16 @@ const clients = []
 wss.on('connection', function (socket) {
 
     // Creates new player/client.
-    const client = new PlayerController(socket, world)
+    const client = gameInstance.onNewConnection()
     clients.push(client)
 
     // Register's the player's controll update callback.
-    socket.on('message', (message) => client.action(message) )
+    socket.on('message', (message) => client.setKeys(JSON.parse(message)) )
 
     socket.on('close', () => {
         
         // Tells the player to clean up.
-        client.destroy()
+        gameInstance.onEndConnection(client)
 
         // Removes client from client list.
         const index = clients.indexOf(client)
