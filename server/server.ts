@@ -3,7 +3,7 @@ import Thread from 'async-threading'
 import Game from '../lib/Game'
 
 const config = {
-    'socket-port': 3000
+    'socket-port': 19132
 }
 
 const gameInstance = new Game();

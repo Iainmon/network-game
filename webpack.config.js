@@ -1,4 +1,5 @@
 const path = require('path');
+require('./dependencies/matter-tools/webgl/index')
 
 module.exports = {
   entry: './client/src/main.ts',
