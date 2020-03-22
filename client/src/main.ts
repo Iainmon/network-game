@@ -12,8 +12,8 @@ const render = Render.create({
 
 let keys = {}
 
-const endpoint = '192.168.1.167'
-const port = 3000
+const endpoint = 'game.grape-juice.org'
+const port = 19132
 const communicator = new Communicator(endpoint, port)
 communicator.onRecieve( (message) => {
     // console.log(message.data)
